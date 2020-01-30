@@ -34,10 +34,17 @@ steps:
         fileShareName="tfstate"
         mntPath="/mnt/$storageAccountName/$fileShareName"
         sudo mkdir -p $mntPath
+        ls -la $mntPath
+        echo "mkdir succeeded"
 
         storageAccountKey=$(az storage account keys list \
             --resource-group $resourceGroupName \
             --account-name $storageAccountName \
             --query "[0].value" | tr -d '"')
+
+        echo "acct key is: $storageAccountKey"
+        echo "acct name is: $storageAccountName"
+        echo "smbPath is: $smbPath"
+        echo "mntPath is: $mntPath"
 
         sudo mount -t cifs $smbPath $mntPath -o vers=3.0,username=$storageAccountName,password=$storageAccountKey,serverino
