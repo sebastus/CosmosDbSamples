@@ -14,7 +14,7 @@ steps:
   displayName: Azure CLI
   inputs:
     azureSubscription: golive-Azure
-    scriptType: ps
+    scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
         az --version
